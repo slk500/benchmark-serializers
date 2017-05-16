@@ -1,0 +1,18 @@
+{
+  "name": "symfony-fighter/package_name",
+  "description": "description_text",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "slk500",
+      "email": "slawomir.grochowski@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/serializer": "3.2.x-dev",
+    "jms/serializer": "2.0.x-dev",
+    "fzaninotto/faker": "1.6.x-dev",
+    "symfony/property-access": "3.2.x-dev"
+  }
+}
