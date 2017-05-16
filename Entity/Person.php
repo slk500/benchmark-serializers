@@ -7,16 +7,50 @@
  */
 
 
-class Person implements Serializable, JsonSerializable
+class Person implements JsonSerializable
 {
-    public $firstName;
-    public $lastName;
-    public $city;
-    public $street;
-    public $phone;
-    public $country;
-    public $email;
-    public $books = [];
+    private $firstName;
+    private $lastName;
+    private $city;
+    private $street;
+    private $phone;
+    private $country;
+    private $email;
+    private $birthday;
+    private $job;
+    private $books = [];
+
+    /**
+     * @return mixed
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param mixed $birthday
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * @param mixed $job
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+    }
 
 
     public function getFirstName()
@@ -102,50 +136,6 @@ class Person implements Serializable, JsonSerializable
         $this->email = $email;
     }
 
-    public function serialize()
-    {
-        return [
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
-            'city' => $this->city,
-            'street' => $this->street,
-            'phone' => $this->phone,
-            'country' => $this->country,
-            'email' => $this->email
-        ];
-    }
-
-    public function unserialize($serialized)
-    {
-
-    }
-
-    function jsonSerialize()
-    {
-        return [
-            'firstName' => $this->firstName,
-            'books' => $this->books,
-//            'books' => array_map(
-//                function (Path $path) use ($object) {
-//                    return [
-//                        "id" => $path->getId(),
-//                        "name" => $path->getName(),
-//                        "status" => $path->getStatus(),
-//                        "data" => $path->getData(),
-//                        "errors" => $path->getErrors()
-//                    ];
-//                },
-//                $object->getPaths()->toArray()
-//            ),
-            'lastName' => $this->lastName,
-            'city' => $this->city,
-            'street' => $this->street,
-            'phone' => $this->phone,
-            'country' => $this->country,
-            'email' => $this->email
-        ];
-    }
-
     /**
      * @return mixed
      */
@@ -164,7 +154,40 @@ class Person implements Serializable, JsonSerializable
 
     public function addBook($book)
     {
-     $this->books[] = $book;
+        $this->books[] = $book;
+    }
+
+
+//    public function serialize()
+//    {
+//        return [
+//            'firstName' => $this->firstName,
+//            'lastName' => $this->lastName,
+//            'city' => $this->city,
+//            'street' => $this->street,
+//            'phone' => $this->phone,
+//            'country' => $this->country,
+//            'email' => $this->email
+//        ];
+//    }
+//
+//    public function unserialize($serialized)
+//    {
+//
+//    }
+
+    function jsonSerialize()
+    {
+        return [
+            'firstName' => $this->firstName,
+            'books' => $this->books,
+            'lastName' => $this->lastName,
+            'city' => $this->city,
+            'street' => $this->street,
+            'phone' => $this->phone,
+            'country' => $this->country,
+            'email' => $this->email
+        ];
     }
 
 //    function jsonSerialize()

@@ -8,7 +8,6 @@
 require_once 'vendor/autoload.php';
 
 
-
 function convert($size)
 {
     $unit=array('b','kb','mb','gb','tb','pb');
@@ -26,17 +25,19 @@ function makePersons($numberOfPersons)
     foreach (range(1, $numberOfPersons) as $i) {
 
         $book1 = new Book;
-        $book1->setAuthor('Autor1');
-        $book1->setTitle('Książka1');
+        $book1->setAuthor($faker->name());
+        $book1->setTitle($faker->title);
 
         $book2 = new Book;
-        $book2->setAuthor('Autor2');
-        $book2->setTitle('Książka2');
+        $book1->setAuthor($faker->name());
+        $book1->setTitle($faker->title);
 
         $person = new Person();
         $person->addBook($book1);
         $person->addBook($book2);
 
+        $person->setJob($faker->jobTitle);
+        $person->setBirthday($faker->dateTime);
         $person->setFirstName($faker->firstName);
         $person->setLastName($faker->lastName);
         $person->setCity($faker->city);
@@ -49,6 +50,16 @@ function makePersons($numberOfPersons)
     }
     return $persons;
 }
+
+function createFilesData()
+{
+    file_put_contents('10.txt', serialize(makePersons(10)), FILE_APPEND);
+    file_put_contents('100.txt', serialize(makePersons(100)), FILE_APPEND);
+    file_put_contents('1000.txt', serialize(makePersons(1000)), FILE_APPEND);
+    file_put_contents('10000.txt', serialize(makePersons(10000)), FILE_APPEND);
+    file_put_contents('100000.txt', serialize(makePersons(100000)), FILE_APPEND);
+}
+
 
 function personsFromArray($inputArray)
 {
