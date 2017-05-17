@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Serializer;
 
 $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
 $jms = JMS\Serializer\SerializerBuilder::create()->build();
-$persons = unserialize(file_get_contents('100.txt'));
+$persons = unserialize(file_get_contents('10.txt'));
 
 $result = [];
 
@@ -36,25 +36,23 @@ $jms->serialize($persons, 'json');
 $jmsTime = (microtime(true) - $startTime);
 
 $result = [
-    'serialize()' => $phpSerializerTime,
-    'json_encode()' => $jsonEncodeTime,
-    'Symfony Serializer' => $symfonyTime,
-    'JMS Serializer' => $jmsTime,
+    ['name' => 'serialize()', 'value' => $phpSerializerTime ],
+    ['name' => 'json_encode()', 'value' => $jsonEncodeTime],
+    ['name' => 'Symfony Serializer', 'value' => $symfonyTime],
+    ['name' => 'JMS Serializer', 'value' => $jmsTime]
 ];
 
-asort($result);
+array_multisort(array_column($result, 'value'), SORT_ASC, $result);
 
 print_r($result);
 
-foreach ($result as $key => $value)
-{
-    echo $key . 'is the fastest one';
-}
 
 
+echo ($result[0]['name']) . " is the fastest one" . PHP_EOL;
+echo ($result[1]['name']) . " is " . $result[1]['value']/$result[0]['value'] . " slower then " . $result[0]['name']. PHP_EOL;
+echo ($result[2]['name']) . " is " . $result[2]['value']/$result[0]['value'] . " slower then " . $result[0]['name']. PHP_EOL;
+echo ($result[3]['name']) . " is " . $result[3]['value']/$result[0]['value'] . " slower then " . $result[0]['name']. PHP_EOL;
 
-//echo "Symfony is " . ($symfonyTime / $jsonTime) . " slower then json encode" . PHP_EOL;
-//echo "JMS is " . ($jmsTime / $jsonTime) . " slower then json encode" . PHP_EOL;
 
 
 
