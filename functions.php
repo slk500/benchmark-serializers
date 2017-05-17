@@ -29,8 +29,8 @@ function makePersons($numberOfPersons)
         $book1->setTitle($faker->title);
 
         $book2 = new Book;
-        $book1->setAuthor($faker->name());
-        $book1->setTitle($faker->title);
+        $book2->setAuthor($faker->name());
+        $book2->setTitle($faker->title);
 
         $person = new Person();
         $person->addBook($book1);

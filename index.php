@@ -46,8 +46,6 @@ array_multisort(array_column($result, 'value'), SORT_ASC, $result);
 
 print_r($result);
 
-
-
 echo ($result[0]['name']) . " is the fastest one" . PHP_EOL;
 echo ($result[1]['name']) . " is " . $result[1]['value']/$result[0]['value'] . " slower then " . $result[0]['name']. PHP_EOL;
 echo ($result[2]['name']) . " is " . $result[2]['value']/$result[0]['value'] . " slower then " . $result[0]['name']. PHP_EOL;

@@ -7,7 +7,7 @@
  */
 
 
-class Person implements JsonSerializable
+class Person //implements JsonSerializable, Serializable
 {
     private $firstName;
     private $lastName;
@@ -160,35 +160,47 @@ class Person implements JsonSerializable
 
 //    public function serialize()
 //    {
-//        return [
+//        return serialize([
 //            'firstName' => $this->firstName,
 //            'lastName' => $this->lastName,
 //            'city' => $this->city,
 //            'street' => $this->street,
 //            'phone' => $this->phone,
 //            'country' => $this->country,
-//            'email' => $this->email
-//        ];
+//            'email' => $this->email,
+//            'job' => $this->birthday,
+//            'birthday' => $this->birthday,
+//            'books' => $this->books
+//        ]);
 //    }
 //
 //    public function unserialize($serialized)
 //    {
+//        $arr = unserialize($serialized);
 //
+//
+//        $this->firstName = $arr['firstName'];
+//        $this->lastName = $arr['lastName'];
+//        $this->city = $arr['city'];
+//
+//        $mos = new Book();
 //    }
-
-    function jsonSerialize()
-    {
-        return [
-            'firstName' => $this->firstName,
-            'books' => $this->books,
-            'lastName' => $this->lastName,
-            'city' => $this->city,
-            'street' => $this->street,
-            'phone' => $this->phone,
-            'country' => $this->country,
-            'email' => $this->email
-        ];
-    }
+//
+//    function jsonSerialize()
+//    {
+//        return [
+//            'firstName' => $this->firstName,
+//            'books' => $this->books,
+//            'lastName' => $this->lastName,
+//            'city' => $this->city,
+//            'street' => $this->street,
+//            'phone' => $this->phone,
+//            'country' => $this->country,
+//            'email' => $this->email,
+//            'job' => $this->birthday,
+//            'birthday' => $this->birthday
+//        ];
+//    }
 
 //    function jsonSerialize()
 //    {
