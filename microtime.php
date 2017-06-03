@@ -2,7 +2,7 @@
 
 $array = [];
 
-foreach (range(1, 10) as $i) {
+foreach (range(1, 10000) as $i) {
     $startTime = microtime(true);
     $array [] = microtime(true) - $startTime;
 }
@@ -33,6 +33,7 @@ function stats_standard_deviation(array $a, $sample = false)
 
 array_walk($array, function(&$v) {$v *= 1000000;});
 
-echo stats_standard_deviation($array);
-print_r($array);
+echo stats_standard_deviation($array) . PHP_EOL;
+echo stats_standard_deviation($array) *100 . PHP_EOL;
+//print_r($array);
 
